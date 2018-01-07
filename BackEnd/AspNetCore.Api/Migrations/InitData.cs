@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace AspNetCore.Api.Migrations
 {
+    /// <summary>
+    /// Init Data
+    /// </summary>
     public class InitData
     {
+        /// <summary>
+        /// Seed.
+        /// </summary>
+        /// <param name="context"></param>
         public static void AddTestData(ApiContext context)
         {
             var testUser1 = new User

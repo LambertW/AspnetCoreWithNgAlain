@@ -9,17 +9,28 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCore.Api.Controllers
 {
+    /// <summary>
+    /// Users Controller(Inmemory)
+    /// </summary>
     [Produces("application/json")]
     [Route("api/Users")]
     public class UsersController : Controller
     {
         private readonly ApiContext _context;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="apiContext"></param>
         public UsersController(ApiContext apiContext)
         {
             this._context = apiContext;
         }
 
+        /// <summary>
+        /// Get Users.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
