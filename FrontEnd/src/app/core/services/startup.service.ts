@@ -41,13 +41,13 @@ export class StartupService {
     private viaMock(resolve: any, reject: any) {
         // mock
         const app: any = {
-            name: `ng-alain`,
+            name: `ASP.NET Core with Ng-Alain`,
             description: `Ng-zorro admin panel front-end framework`
         };
         const user: any = {
             name: 'Admin',
             avatar: './assets/img/zorro.svg',
-            email: 'cipchk@qq.com',
+            email: 'test@qq.com',
             token: '123456789'
         };
         // 应用信息：包括站点名、描述、年份

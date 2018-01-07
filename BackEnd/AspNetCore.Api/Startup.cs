@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCore.Api.Migrations;
+using AspNetCore.Api.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -34,6 +37,10 @@ namespace AspNetCore.Api
                 });
             });
 
+            services.AddDbContext<ApiContext>(opt => {
+                opt.UseInMemoryDatabase("InMemoryDatabase");
+            });
+
             services.AddMvc();
         }
 
@@ -46,6 +53,12 @@ namespace AspNetCore.Api
             }
 
             app.UseCors("CorsPolicy");
+
+            using(var scope = app.ApplicationServices.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetService<ApiContext>();
+                InitData.AddTestData(context); 
+            }
 
             app.UseMvc();
         }
