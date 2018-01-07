@@ -20,6 +20,7 @@ namespace AspNetCore.Api.Controllers
             this._context = apiContext;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             var users = await _context.Users
