@@ -94,7 +94,9 @@ namespace AspNetCore.Api
             using(var scope = app.ApplicationServices.CreateScope())
             {
                 var context = scope.ServiceProvider.GetService<ApiContext>();
-                InitData.AddTestData(context); 
+                InitData.AddTestData(context);
+
+                InitData.AddProductsData(context);
             }
 
             app.UseMvc();

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AspNetCore.Api.Models.Products;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,5 +31,10 @@ namespace AspNetCore.Api.Models
         /// Posts
         /// </summary>
         public DbSet<Post> Posts { get; set; }
+
+
+        public DbSet<Products.Product> Products { get; set; }
+
+        public DbSet<TypeProduct> TypeProducts { get; set; }
     }
 }
