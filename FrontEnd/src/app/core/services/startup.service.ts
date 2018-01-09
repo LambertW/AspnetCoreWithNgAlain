@@ -76,6 +76,11 @@ export class StartupService {
                         text: '测试',
                         link: '/apiValues',
                         icon: 'icon-rocket'
+                    },
+                    {
+                        text: '产品',
+                        link: '/products/list',
+                        icon: 'icon-rocket'
                     }
                 ]
             }

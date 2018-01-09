@@ -24,7 +24,8 @@ export const routes = [
             { path: 'dashboard', component: DashboardComponent, data: { title: '仪表盘' } },
             // 业务子模块
             // { path: 'widgets', loadChildren: './widgets/widgets.module#WidgetsModule' }
-            { path: 'apiValues', component: ApiValuesComponent }
+            { path: 'apiValues', component: ApiValuesComponent },
+            { path: 'products', loadChildren: './products/products.module#ProductsModule'}
         ]
     },
     // 全屏布局
