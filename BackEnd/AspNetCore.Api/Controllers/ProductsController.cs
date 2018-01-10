@@ -25,7 +25,7 @@ namespace AspNetCore.Api.Controllers
         // GET: api/Products
         //[Authorize]
         [HttpGet]
-        public IQueryable<ProductDTO> GetProducts()
+        public PageBase<List<ProductDTO>> GetProducts()
         {
             var products = from b in _apiContext.Products
                            select new ProductDTO()
@@ -38,7 +38,19 @@ namespace AspNetCore.Api.Controllers
                                Description = b.Description
                            };
 
-            return products;
+            var page = new PageBase<List<ProductDTO>>
+            {
+                results = products.ToList()
+            };
+            page.info = new PageBase<List<ProductDTO>>.Info
+            {
+                page = 1,
+                results = 6,
+                seed = "fdsfsfdsfds",
+                version = "1.1"
+            };
+
+            return page;
         }
 
         // TODO: German :)
