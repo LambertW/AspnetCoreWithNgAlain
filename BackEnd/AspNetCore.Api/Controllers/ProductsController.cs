@@ -40,14 +40,15 @@ namespace AspNetCore.Api.Controllers
 
             var page = new PageBase<List<ProductDTO>>
             {
-                results = products.ToList()
+                Results = products.ToList()
             };
-            page.info = new PageBase<List<ProductDTO>>.Info
+            page.Info = new PageBase<List<ProductDTO>>.Information
             {
-                page = 1,
-                results = 6,
-                seed = "fdsfsfdsfds",
-                version = "1.1"
+                Page = 1,
+                Results = 6,
+                Seed = "fdsfsfdsfds",
+                Version = "1.1",
+                Total = _apiContext.Products.Count()
             };
 
             return page;

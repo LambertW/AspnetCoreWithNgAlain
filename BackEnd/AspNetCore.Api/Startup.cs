@@ -58,6 +58,10 @@ namespace AspNetCore.Api
             });
 
             services.AddMvc();
+                //.AddJsonOptions(options =>
+                //{
+                //    options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+                //});
 
             // Register the Swagger generator, defining one or more Swagger documents.
             services.AddSwaggerGen(c =>

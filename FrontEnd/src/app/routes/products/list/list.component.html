@@ -2,9 +2,9 @@
 <nz-card [nzBordered]="false">
     
 
-  <nz-table #nzTable [nzAjaxData]="_dataset" (nzDataChange)="_dataChange($event)"
-      [nzPageIndex]="_pageIndex" (nzPageIndexChange)="_pageIndexChange($event)" (nzPageIndexChangeClick)="_pageIndexChangeClick($event)"
-      [nzPageSize]="_pageSize" (nzPageSizeChange)="_pageSizeChange($event)"
+  <nz-table #nzTable [nzAjaxData]="_dataset"
+      [nzPageIndex]="_pageIndex" (nzPageIndexChange)="refreshData()"
+      [nzPageSize]="_pageSize" (nzPageSizeChange)="refreshData(true)"
       [nzTotal]="_total"
       [nzBordered]="true"
       [nzSize]="'default'"
@@ -12,18 +12,20 @@
       [nzShowFooter]="true"
       [nzShowTitle]="true"
       [nzIsPagination]="true"
-      [nzLoading]="true"
+      [nzLoading]="_loading"
       [nzShowSizeChanger]="true"
       [nzShowQuickJumper]="true"
       [nzShowTotal]="true">
       <div noResult>无数据时内容</div>
-      <div nz-table-table>表头内容</div>
       <thead nz-thead>
           <tr>
               <th nz-th [nzCheckbox]="true">
                   <label nz-checkbox [(ngModel)]="_allChecked" (ngModelChange)="_checkAll($event)" [nzIndeterminate]="_indeterminate"></label>
               </th>
-              <th nz-th><span></span></th>
+              <th nz-th><span>姓名</span></th>
+              <th nz-th><span>价格</span></th>
+              <th nz-th><span>描述</span></th>
+              <th nz-th><span>操作</span></th>
           </tr>
       </thead>
       <tbody nz-tbody>
@@ -31,6 +33,11 @@
               <td nz-td [nzCheckbox]="true">
                   <label nz-checkbox [(ngModel)]="i.checked" (ngModelChange)="_refreshStatus($event)"></label>
               </td>
+              <td nz-td>
+                  {{i.name}}
+              </td>
+              <td nz-td>{{i.price}}</td>
+              <td nz-td>{{i.description}}</td>
               <td nz-td>
                   <span>
                       <a href="#" (click)="edit(i)">编辑</a>

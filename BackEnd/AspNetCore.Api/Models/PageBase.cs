@@ -7,19 +7,21 @@ namespace AspNetCore.Api.Models
 {
     public class PageBase<T>
     {
-        public Info info { get; set; }
+        public Information Info { get; set; }
 
-        public T results { get; set; }
+        public T Results { get; set; }
 
-        public class Info
+        public class Information
         {
-            public int page { get; set; }
+            public int Page { get; set; }
 
-            public int results { get; set; }
+            public int Results { get; set; }
 
-            public string seed { get; set; }
+            public int Total { get; set; }
 
-            public string version { get; set; }
+            public string Seed { get; set; }
+
+            public string Version { get; set; }
         }
     }
 }

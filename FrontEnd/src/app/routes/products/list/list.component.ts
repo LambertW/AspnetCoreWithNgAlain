@@ -10,23 +10,28 @@ export class ListComponent implements OnInit {
 
   _pageIndex = 1;
   _pageSize = 20;
-  _dataset = [];
   _total = 1;
+  _dataset = [];
+  _loading = true;
+  _sortValue = null;
+  
   constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
+    this.refreshData();
+  }
+
+  refreshData(reset = false) {
+    if(reset){
+      this._pageIndex = 1;
+    }
+    this._loading = true;
     this.productsService.getProducts(1, 20, '' , '').subscribe((data: any) => {
+      this._loading = false;
+      this._total = data.info.total;
       this._dataset = data.results;
     });
   }
-
-  _dataChange() {
-
-  }
-
-  _pageIndexChange(){}
-
-  _pageSizeChange(){}
 
   _checkAll() {}
 

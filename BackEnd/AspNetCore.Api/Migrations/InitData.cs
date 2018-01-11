@@ -45,38 +45,17 @@ namespace AspNetCore.Api.Migrations
             context.TypeProducts.Add(new TypeProduct() { Id = 2, Name = "Juguetes" });
             context.TypeProducts.Add(new TypeProduct() { Id = 3, Name = "Software" });
 
-            context.Products.Add(new Product()
+            for(var i = 0; i < 100; i++)
             {
-                Id = 1,
-                Name = "Producto 1",
-                Description = "Un producto comun",
-                TypeProductId = 1,
-                Price = 9.99M
-            });
-            context.Products.Add(new Product()
-            {
-                Id = 2,
-                Name = "Producto 4",
-                Description = "Un producto comun",
-                TypeProductId = 2,
-                Price = 9.99M
-            });
-            context.Products.Add(new Product()
-            {
-                Id = 3,
-                Name = "Producto 2",
-                Description = "Un producto comun",
-                TypeProductId = 3,
-                Price = 9.99M
-            });
-            context.Products.Add(new Product()
-            {
-                Id = 4,
-                Name = "Producto 3",
-                Description = "Un producto comun",
-                TypeProductId = 1,
-                Price = 9.99M
-            });
+                context.Products.Add(
+                    new Product()
+                    {
+                        Name = "Producto " + i,
+                        Description = "Un producto comun" + i,
+                        TypeProductId = 1,
+                        Price = 9.99M
+                    });
+            }
 
             context.SaveChanges();
         }
