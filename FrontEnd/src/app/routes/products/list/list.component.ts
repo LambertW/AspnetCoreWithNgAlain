@@ -25,8 +25,9 @@ export class ListComponent implements OnInit {
     if(reset){
       this._pageIndex = 1;
     }
+    console.log(this._pageIndex);
     this._loading = true;
-    this.productsService.getProducts(1, 20, '' , '').subscribe((data: any) => {
+    this.productsService.getProducts(this._pageIndex, this._pageSize, '' , '').subscribe((data: any) => {
       this._loading = false;
       this._total = data.info.total;
       this._dataset = data.results;

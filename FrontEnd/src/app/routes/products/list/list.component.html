@@ -3,8 +3,8 @@
     
 
   <nz-table #nzTable [nzAjaxData]="_dataset"
-      [nzPageIndex]="_pageIndex" (nzPageIndexChange)="refreshData()"
-      [nzPageSize]="_pageSize" (nzPageSizeChange)="refreshData(true)"
+      [(nzPageIndex)]="_pageIndex" (nzPageIndexChange)="refreshData()"
+      [(nzPageSize)]="_pageSize" (nzPageSizeChange)="refreshData(true)"
       [nzTotal]="_total"
       [nzBordered]="true"
       [nzSize]="'default'"

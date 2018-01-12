@@ -25,9 +25,9 @@ namespace AspNetCore.Api.Controllers
         // GET: api/Products
         //[Authorize]
         [HttpGet]
-        public PageBase<List<ProductDTO>> GetProducts()
+        public PageBase<List<ProductDTO>> GetProducts(int page = 1, int results = 10, string sortField = "", string sortOrder = "")
         {
-            var products = from b in _apiContext.Products
+            var products = from b in _apiContext.Products.Skip((page - 1) * results).Take(10)
                            select new ProductDTO()
                            {
                                Id = b.Id,
@@ -38,11 +38,11 @@ namespace AspNetCore.Api.Controllers
                                Description = b.Description
                            };
 
-            var page = new PageBase<List<ProductDTO>>
+            var page1 = new PageBase<List<ProductDTO>>
             {
                 Results = products.ToList()
             };
-            page.Info = new PageBase<List<ProductDTO>>.Information
+            page1.Info = new PageBase<List<ProductDTO>>.Information
             {
                 Page = 1,
                 Results = 6,
@@ -51,7 +51,7 @@ namespace AspNetCore.Api.Controllers
                 Total = _apiContext.Products.Count()
             };
 
-            return page;
+            return page1;
         }
 
         // TODO: German :)

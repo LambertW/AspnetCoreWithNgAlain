@@ -12,12 +12,12 @@ export class ProductsService {
 
     getProducts(pageIndex = 1, pageSize = 10, sortField, sortOrder){
         var url = 'Products';
-        let params = new HttpParams()
-            .append('page', `${pageIndex}`)
-            .append('results', `${pageSize}`)
-            .append('sortField', sortField)
-            .append('sortOrder', sortOrder);
 
-        return this.http.get(url);
+        return this.http.get(url, {
+            page: `${pageIndex}`,
+            results: `${pageSize}`,
+            sortField: sortField,
+            sortOrder: sortOrder
+        });
     }
 }
