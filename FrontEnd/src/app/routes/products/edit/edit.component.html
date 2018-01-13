@@ -1,0 +1,33 @@
+<form nz-form [formGroup]="form" (ngSubmit)="_submitForm($event, form.value)" [nzLayout]="'horizontal'">
+    <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="5">
+            <label for="name" nz-form-item-required>产品名称</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="19" [nzHasFeedback]="'true'" [nzValidateStatus]="success">
+            <nz-input name="name" formControlName="name" [nzPlaceHolder]="'姓名'" [nzSize]="'large'" [nzId]="name"></nz-input>
+        </div>
+    </div>
+    <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="5">
+            <label for="price" nz-form-item-required>价格</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="19" [nzHasFeedback]="'true'" [nzValidateStatus]="success">
+            <nz-input-number name="price" formControlName="price" [nzMin]="1" [nzMax]="99999" [nzStep]="1" [nzPlaceHolder]="'价格'" [nzSize]="'large'"></nz-input-number>
+        </div>
+    </div>
+    <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="5">
+            <label for="typeProductName" nz-form-item-required>子类名称</label>
+        </div>
+
+    </div>
+    <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="5">
+            <label for="description">描述</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="19" [nzHasFeedback]="'true'" [nzValidateStatus]="success">
+            <nz-input formControlName="description" name="description" [nzType]="'textarea'" [nzRows]="'4'" [nzPlaceHolder]="'描述'"></nz-input>
+        </div>
+    </div>
+    <p>Form value: {{ form.value | json }}</p>
+</form>

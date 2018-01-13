@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ProductsService } from "app/routes/products/services/products.service";
-import { NzMessageService } from "../../../../../node_modules/_ng-zorro-antd@0.6.10@ng-zorro-antd";
+import { NzMessageService, NzModalService } from "ng-zorro-antd";
+import { EditComponent } from "app/routes/products/edit/edit.component";
 
 @Component({
     selector: "app-list",
@@ -15,8 +16,11 @@ export class ListComponent implements OnInit {
     _loading = true;
     _sortValue = null;
 
-    constructor(private productsService: ProductsService,
-      private msg: NzMessageService) {}
+    constructor(
+        private productsService: ProductsService,
+        private msg: NzMessageService,
+        private modal: NzModalService
+    ) {}
 
     ngOnInit() {
         this.refreshData();
@@ -40,15 +44,29 @@ export class ListComponent implements OnInit {
 
     _refreshStatus() {}
 
-    edit() {}
+    edit(item) {
+        var subscription = this.modal.open({
+            title: "编辑",
+            content: EditComponent,
+            okText: "确定",
+            cancelText: "取消",
+            onOk() {},
+            onCancel() {},
+            componentParams: {
+                id: item.id
+            }
+        });
+        subscription.subscribe(result => {
+            this.refreshData();
+        });
+    }
 
     active() {}
 
     del(item) {
-      console.log(item);
-      this.productsService.delete(item.id).subscribe(res =>{
-        this.msg.success('操作成功');
-        this.refreshData();
-      });
+        this.productsService.delete(item.id).subscribe(res => {
+            this.msg.success("操作成功");
+            this.refreshData();
+        });
     }
 }

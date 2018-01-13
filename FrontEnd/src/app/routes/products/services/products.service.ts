@@ -1,15 +1,12 @@
-import { Injectable } from '@angular/core';
-import { _HttpClient } from '@delon/theme';
+import { Injectable } from "@angular/core";
+import { _HttpClient } from "@delon/theme";
 
 @Injectable()
 export class ProductsService {
+    constructor(private http: _HttpClient) {}
 
-    constructor(private http: _HttpClient){
-        
-    }
-
-    getProducts(pageIndex = 1, pageSize = 10, sortField, sortOrder){
-        var url = 'Products';
+    getProducts(pageIndex = 1, pageSize = 10, sortField, sortOrder) {
+        var url = "Products";
 
         return this.http.get(url, {
             page: `${pageIndex}`,
@@ -19,11 +16,17 @@ export class ProductsService {
         });
     }
 
-    delete(id: number){
-        var url = 'Products';
+    delete(id: number) {
+        var url = "Products";
 
         return this.http.delete(url, {
             id: `${id}`
         });
+    }
+
+    getProduct(id: number) {
+        var url = "Products";
+
+        return this.http.get(`${url}/${id}`);
     }
 }
