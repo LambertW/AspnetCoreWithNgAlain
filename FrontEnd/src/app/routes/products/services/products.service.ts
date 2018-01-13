@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
-import { HttpParams } from '@angular/common/http';
-
 
 @Injectable()
 export class ProductsService {
@@ -18,6 +16,14 @@ export class ProductsService {
             results: `${pageSize}`,
             sortField: sortField,
             sortOrder: sortOrder
+        });
+    }
+
+    delete(id: number){
+        var url = 'Products';
+
+        return this.http.delete(url, {
+            id: `${id}`
         });
     }
 }

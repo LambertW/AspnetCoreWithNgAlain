@@ -25,7 +25,7 @@ namespace AspNetCore.Api.Controllers
         // GET: api/Products
         //[Authorize]
         [HttpGet]
-        public PageBase<List<ProductDTO>> GetProducts(int page = 1, int results = 10, string sortField = "", string sortOrder = "")
+        public async Task<PageBase<List<ProductDTO>>> GetProducts(int page = 1, int results = 10, string sortField = "", string sortOrder = "")
         {
             var products = from b in _apiContext.Products.Skip((page - 1) * results).Take(10)
                            select new ProductDTO()

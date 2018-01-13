@@ -40,9 +40,12 @@
               <td nz-td>{{i.description}}</td>
               <td nz-td>
                   <span>
-                      <a href="#" (click)="edit(i)">编辑</a>
+                      <a (click)="edit(i)">编辑</a>
                       <span nz-table-divider></span>
-                      <a href="#" (click)="del(i)">删除</a>
+                      <nz-popconfirm [nzTitle]="'确定要删除吗？'" (nzOnConfirm)="del(i)">
+                          <a nz-popconfirm>删除</a>
+                      </nz-popconfirm>
+                      
                       <span nz-table-divider></span>
                       <nz-dropdown>
                           <a class="ant-dropdown-link" nz-dropdown>
