@@ -11,12 +11,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCore.Api.Controllers
 {
+    /// <summary>
+    /// Products Controller
+    /// </summary>
     [Produces("application/json")]
     [Route("api/Products")]
     public class ProductsController : Controller
     {
         private ApiContext _apiContext;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="apiContext"></param>
         public ProductsController(ApiContext apiContext)
         {
             _apiContext = apiContext;
@@ -24,8 +31,18 @@ namespace AspNetCore.Api.Controllers
 
         // GET: api/Products
         //[Authorize]
+        /// <summary>
+        /// Get Products List
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="results"></param>
+        /// <param name="sortField"></param>
+        /// <param name="sortOrder"></param>
+        /// <returns></returns>
+        /// <response code="200">Returns products by pagination.</response>
         [HttpGet]
-        public async Task<PageBase<List<ProductDTO>>> GetProducts(int page = 1, int results = 10, string sortField = "", string sortOrder = "")
+        [ProducesResponseType(typeof(PageBase<List<ProductDTO>>), 200)]
+        public async Task<IActionResult> GetProducts(int page = 1, int results = 10, string sortField = "", string sortOrder = "")
         {
             var products = from b in _apiContext.Products.Skip((page - 1) * results).Take(10)
                            select new ProductDTO()
@@ -51,19 +68,24 @@ namespace AspNetCore.Api.Controllers
                 Total = _apiContext.Products.Count()
             };
 
-            return page1;
+            return Ok(page1);
         }
 
-        // TODO: German :)
-        // we're converting to DTOs manually in code. Another option is to use a library like AutoMapper that handles the conversion automatically.
-        // since the program is simple, it was chosen to use the quick way
-
-        // GET: api/Products/5
-        //[Authorize]
-        //[ResponseType(typeof(ProductoDetailDTO))]
+        /// <summary>
+        /// Get Product by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(ProductoDetailDTO), 200)]
+        [ProducesResponseType(typeof(ProductoDetailDTO), 404)]
         public async Task<IActionResult> GetProduct(int id)
         {
+            if (!ProductExists(id))
+            {
+                return NotFound(id);
+            }
+
             var product = await _apiContext.Products.Include(b => b.TypeProduct).Select(b =>
             new ProductoDetailDTO()
             {
@@ -82,10 +104,18 @@ namespace AspNetCore.Api.Controllers
             return Ok(product);
         }
 
+        /// <summary>
+        /// Update Product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="product"></param>
+        /// <returns></returns>
         // PUT: api/Products/5
         //[Authorize]
         //[ResponseType(typeof(void))]
         [HttpPut]
+        [ProducesResponseType(typeof(Product), 400)]
+        [ProducesResponseType(typeof(Product), 404)]
         public IActionResult PutProduct(int id, Product product)
         {
             if (!ModelState.IsValid)
@@ -96,6 +126,11 @@ namespace AspNetCore.Api.Controllers
             if (id != product.Id)
             {
                 return BadRequest();
+            }
+
+            if (!ProductExists(id))
+            {
+                return NotFound(id);
             }
 
             _apiContext.Entry(product).State = EntityState.Modified;
@@ -116,9 +151,14 @@ namespace AspNetCore.Api.Controllers
                 }
             }
 
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return new NoContentResult();
         }
 
+        /// <summary>
+        /// Add new Product
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         // POST: api/Products
         //[Authorize]
         //[ResponseType(typeof(Product))]
@@ -148,10 +188,13 @@ namespace AspNetCore.Api.Controllers
             return CreatedAtRoute("DefaultApi", new { id = product.Id }, dto);
         }
 
-        // DELETE: api/Products/5
-        //[Authorize]
-        //[ResponseType(typeof(Product))]
+        /// <summary>
+        /// Delete Product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
+        [ProducesResponseType(typeof(Product), 200)]
         public IActionResult DeleteProduct(int id)
         {
             Product product = _apiContext.Products.Find(id);
