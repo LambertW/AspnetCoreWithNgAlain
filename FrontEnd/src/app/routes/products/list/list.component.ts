@@ -50,7 +50,9 @@ export class ListComponent implements OnInit {
             content: EditComponent,
             okText: "确定",
             cancelText: "取消",
-            onOk() {},
+            onOk() {
+              //this.refreshData();
+            },
             onCancel() {},
             componentParams: {
                 id: item.id

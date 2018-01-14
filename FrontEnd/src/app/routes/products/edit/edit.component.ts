@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ProductsService } from "app/routes/products/services/products.service";
+import { TypeProductsService } from "app/routes/products/services/type-products.service";
 
 @Component({
     selector: "app-edit",
@@ -12,8 +13,11 @@ export class EditComponent implements OnInit {
 
     form: FormGroup;
 
+    typeProducts: any;
+
     constructor(private fb: FormBuilder,
-      private productsService: ProductsService) {}
+      private productsService: ProductsService,
+      private typeProductsService: TypeProductsService) {}
 
     ngOnInit() {
         this.form = this.fb.group({
@@ -28,6 +32,8 @@ export class EditComponent implements OnInit {
     }
 
     initForm(id) {
+      this.typeProducts = this.typeProductsService.getTypeProducts();
+
       this.productsService.getProduct(id).subscribe(res => {
         this.form.setValue({
           id: res.id,

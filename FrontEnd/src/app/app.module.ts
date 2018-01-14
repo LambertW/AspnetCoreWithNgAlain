@@ -12,6 +12,8 @@ import { StartupService } from './core/services/startup.service';
 import { DefaultInterceptor } from '@core/net/default.interceptor';
 import { AlainAuthModule, SimpleInterceptor } from '@delon/auth';
 
+import { DelonCacheModule } from '@delon/cache';
+
 import { registerLocaleData } from '@angular/common';
 import localeZhHans from '@angular/common/locales/zh-Hans';
 registerLocaleData(localeZhHans);
@@ -34,7 +36,8 @@ export function StartupServiceFactory(startupService: StartupService): Function 
         // auth
         AlainAuthModule.forRoot({
             login_url: `/passport/login`
-        })
+        }),
+        DelonCacheModule.forRoot()
     ],
     providers: [
         { provide: LOCALE_ID, useValue: 'zh-Hans' },
