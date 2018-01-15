@@ -12,6 +12,9 @@ export class TypeProductsService {
     getTypeProducts() {
         var url = "TypeProducts";
 
-        return this.cacheService.get(`${url}`);
+        return this.cacheService.get(`${url}`, {
+            expire: "60000",
+            mode: "promise"
+        });
     }
 }
