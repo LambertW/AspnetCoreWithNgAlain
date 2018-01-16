@@ -34,4 +34,8 @@
             <nz-input formControlName="description" name="description" [nzType]="'textarea'" [nzRows]="'4'" [nzPlaceHolder]="'描述'"></nz-input>
         </div>
     </div>
+    <div class="modal-footer">
+        <button nz-button type="button" (click)="_close()">关闭</button>
+        <button nz-button [disabled]="!form.valid || !form.dirty" [nzType]="'primary'">保存</button>
+    </div>
 </form>

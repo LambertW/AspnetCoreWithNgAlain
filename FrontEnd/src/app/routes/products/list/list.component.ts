@@ -48,8 +48,7 @@ export class ListComponent implements OnInit {
         var subscription = this.modal.open({
             title: "编辑",
             content: EditComponent,
-            okText: "确定",
-            cancelText: "取消",
+            footer: false,
             onOk() {
               //this.refreshData();
             },

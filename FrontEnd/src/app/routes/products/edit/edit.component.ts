@@ -2,48 +2,58 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ProductsService } from "app/routes/products/services/products.service";
 import { TypeProductsService } from "app/routes/products/services/type-products.service";
+import { NzModalSubject } from 'ng-zorro-antd';
 
 @Component({
-    selector: "app-edit",
-    templateUrl: "./edit.component.html",
-    styles: []
+  selector: "app-edit",
+  templateUrl: "./edit.component.html",
+  styles: []
 })
 export class EditComponent implements OnInit {
-    id: String;
+  id: String;
 
-    form: FormGroup;
+  form: FormGroup;
 
-    typeProducts: any;
+  typeProducts: any;
 
-    constructor(private fb: FormBuilder,
-      private productsService: ProductsService,
-      private typeProductsService: TypeProductsService) {}
+  constructor(private fb: FormBuilder,
+    private productsService: ProductsService,
+    private typeProductsService: TypeProductsService,
+    private subject: NzModalSubject) { }
 
-    ngOnInit() {
-        this.form = this.fb.group({
-            id: [null],
-            name: [null, [Validators.required]],
-            price: [null, [Validators.required]],
-            description: [null, []],
-            typeProductName: [null, []]
-        });
+  ngOnInit() {
+    this.form = this.fb.group({
+      id: [null],
+      name: [null, [Validators.required]],
+      price: [null, [Validators.required]],
+      description: [null, []],
+      typeProductName: [null, []]
+    });
 
-        this.initForm(this.id);
-    }
+    this.initForm(this.id);
+  }
 
-    initForm(id) {
-      this.typeProducts = this.typeProductsService.getTypeProducts();
+  initForm(id) {
+    this.typeProducts = this.typeProductsService.getTypeProducts();
 
-      this.productsService.getProduct(id).subscribe(res => {
-        this.form.setValue({
-          id: res.id,
-          name: res.name,
-          description: res.description,
-          price: res.price,
-          typeProductName: ''
-        });
+    this.productsService.getProduct(id).subscribe(res => {
+      this.form.setValue({
+        id: res.id,
+        name: res.name,
+        description: res.description,
+        price: res.price,
+        typeProductName: ''
       });
-    }
-    
-    _submitForm() {}
+    });
+  }
+
+  _submitForm($event, formValue) {
+    console.log($event);
+
+    console.log(formValue);
+  }
+
+  _close() {
+    this.subject.destroy();
+  }
 }
