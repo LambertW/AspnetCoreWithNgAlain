@@ -12,5 +12,6 @@ namespace AspNetCore.Api.Models.Products
         public decimal Price { get; set; }
         public string TypeProductName { get; set; }
         public string Description { get; set; }
+        public int TypeProductId { get; internal set; }
     }
 }

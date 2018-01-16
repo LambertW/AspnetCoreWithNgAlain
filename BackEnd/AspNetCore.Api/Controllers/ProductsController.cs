@@ -93,7 +93,8 @@ namespace AspNetCore.Api.Controllers
                 Name = b.Name,
                 Description = b.Description,
                 Price = b.Price,
-                TypeProductName = b.TypeProduct.Name
+                TypeProductName = b.TypeProduct.Name,
+                TypeProductId = b.TypeProduct.Id
             }).SingleOrDefaultAsync(b => b.Id == id);
 
             if (product == null)

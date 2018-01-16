@@ -27,7 +27,8 @@ export class EditComponent implements OnInit {
       name: [null, [Validators.required]],
       price: [null, [Validators.required]],
       description: [null, []],
-      typeProductName: [null, []]
+      //typeProductName: [null, []],
+      typeProductId: [null, []]
     });
 
     this.initForm(this.id);
@@ -42,7 +43,8 @@ export class EditComponent implements OnInit {
         name: res.name,
         description: res.description,
         price: res.price,
-        typeProductName: ''
+        //typeProductName: res.typeProductName,
+        typeProductId: res.typeProductId
       });
     });
   }

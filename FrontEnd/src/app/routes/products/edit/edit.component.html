@@ -17,10 +17,10 @@
     </div>
     <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="5">
-            <label for="typeProductName" nz-form-item-required>子类</label>
+            <label for="typeProductId" nz-form-item-required>子类</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="19">
-            <nz-select formControlName="typeProductName" [nzShowSearch]="true" [nzSize]="'large'" name="typeProductName" [nzPlaceHolder]="'请选择子类'" [nzAllowClear]="true">
+            <nz-select formControlName="typeProductId" [nzShowSearch]="true" [nzSize]="'large'" name="typeProductId" [nzPlaceHolder]="'请选择子类'" [nzAllowClear]="true">
                 <nz-option *ngFor="let item of typeProducts" [nzLabel]="item.name" [nzValue]="item.id">
                 </nz-option>
             </nz-select>
