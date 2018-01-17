@@ -29,4 +29,16 @@ export class ProductsService {
 
         return this.http.get(`${url}/${id}`);
     }
+
+    postProduct(data: any) {
+        var url = "Products";
+
+        return this.http.post(`${url}`, data);
+    }
+
+    putProduct(data: any) {
+        var url = "Products";
+
+        return this.http.put(`${url}`, data);
+    }
 }

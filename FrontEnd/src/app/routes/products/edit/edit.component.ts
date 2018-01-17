@@ -50,7 +50,9 @@ export class EditComponent implements OnInit {
   }
 
   _submitForm($event, formValue) {
-    console.log($event);
+    //console.log($event);
+
+    this.productsService.putProduct(formValue).subscribe();
 
     console.log(formValue);
   }
