@@ -114,10 +114,10 @@ namespace AspNetCore.Api.Controllers
         // PUT: api/Products/5
         //[Authorize]
         //[ResponseType(typeof(void))]
-        [HttpPut]
+        [HttpPut("{id}")]
         [ProducesResponseType(typeof(Product), 400)]
         [ProducesResponseType(typeof(Product), 404)]
-        public IActionResult PutProduct(int id, Product product)
+        public IActionResult PutProduct(int id, [FromBody]Product product)
         {
             if (!ModelState.IsValid)
             {

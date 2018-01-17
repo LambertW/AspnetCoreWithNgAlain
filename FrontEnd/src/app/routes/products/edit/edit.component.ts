@@ -54,7 +54,9 @@ export class EditComponent implements OnInit {
 
     this.productsService.putProduct(formValue).subscribe();
 
-    console.log(formValue);
+    //console.log(formValue);
+
+    this.subject.destroy();
   }
 
   _close() {

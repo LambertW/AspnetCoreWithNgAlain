@@ -39,6 +39,6 @@ export class ProductsService {
     putProduct(data: any) {
         var url = "Products";
 
-        return this.http.put(`${url}`, data);
+        return this.http.put(`${url}/${data.id}`, data);
     }
 }
