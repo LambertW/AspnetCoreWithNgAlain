@@ -23,10 +23,10 @@ export class ListComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.refreshData();
+        this._refreshData();
     }
 
-    refreshData(reset = false) {
+    _refreshData(reset = false) {
         if (reset) {
             this._pageIndex = 1;
         }
@@ -42,11 +42,23 @@ export class ListComponent implements OnInit {
 
     _checkAll() {}
 
-    _add() {}
-
     _refreshStatus() {}
 
-    edit(item) {
+    _add() {
+        var subscription = this.modal.open({
+            title: "新增",
+            content: EditComponent,
+            footer: false,
+            componentParams: {
+                id: 0
+            }
+        });
+        subscription.subscribe(result => {
+            this._refreshData();
+        });
+    }
+
+    _edit(item) {
         var subscription = this.modal.open({
             title: "编辑",
             content: EditComponent,
@@ -60,16 +72,14 @@ export class ListComponent implements OnInit {
             }
         });
         subscription.subscribe(result => {
-            this.refreshData();
+            this._refreshData();
         });
     }
 
-    active() {}
-
-    del(item) {
+    _del(item) {
         this.productsService.delete(item.id).subscribe(res => {
             this.msg.success("操作成功");
-            this.refreshData();
+            this._refreshData();
         });
     }
 }

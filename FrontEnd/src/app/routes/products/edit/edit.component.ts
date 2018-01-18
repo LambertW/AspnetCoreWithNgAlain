@@ -23,7 +23,7 @@ export class EditComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      id: [null],
+      id: [0],
       name: [null, [Validators.required]],
       price: [null, [Validators.required]],
       description: [null, []],
@@ -36,6 +36,9 @@ export class EditComponent implements OnInit {
 
   initForm(id) {
     this.typeProducts = this.typeProductsService.getTypeProducts();
+
+    if (id <= 0)
+      return;
 
     this.productsService.getProduct(id).subscribe(res => {
       this.form.setValue({
@@ -52,7 +55,12 @@ export class EditComponent implements OnInit {
   _submitForm($event, formValue) {
     //console.log($event);
 
-    this.productsService.putProduct(formValue).subscribe();
+    if (formValue.id > 0) {
+      this.productsService.putProduct(formValue).subscribe();
+    }
+    else {
+      this.productsService.postProduct(formValue).subscribe();
+    }
 
     //console.log(formValue);
 

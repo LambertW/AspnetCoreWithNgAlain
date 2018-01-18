@@ -76,7 +76,7 @@ namespace AspNetCore.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetProduct")]
         [ProducesResponseType(typeof(ProductoDetailDTO), 200)]
         [ProducesResponseType(typeof(ProductoDetailDTO), 404)]
         public async Task<IActionResult> GetProduct(int id)
@@ -164,7 +164,7 @@ namespace AspNetCore.Api.Controllers
         //[Authorize]
         //[ResponseType(typeof(Product))]
         [HttpPost]
-        public async Task<IActionResult> PostProduct(Product product)
+        public async Task<IActionResult> PostProduct([FromBody]Product product)
         {
             if (!ModelState.IsValid)
             {
@@ -186,7 +186,7 @@ namespace AspNetCore.Api.Controllers
                 Description = product.Description
             };
 
-            return CreatedAtRoute("DefaultApi", new { id = product.Id }, dto);
+            return CreatedAtRoute("GetProduct", new { id = product.Id }, dto);
         }
 
         /// <summary>
