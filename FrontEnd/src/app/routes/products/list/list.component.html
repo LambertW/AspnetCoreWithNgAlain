@@ -1,10 +1,17 @@
 <pro-header [title]="'产品列表'"></pro-header>
+
 <nz-card [nzBordered]="false">
 
+    <div class="mb-md">
+        <button nz-button (click)="_add()" [nzType]="'primary'" [nzSize]="'large'">
+            <i class="anticon anticon-plus"><span>新建</span></i>
+        </button>
+        
+    </div>
 
     <nz-table #nzTable [nzAjaxData]="_dataset" [(nzPageIndex)]="_pageIndex" (nzPageIndexChange)="refreshData()" [(nzPageSize)]="_pageSize"
-        (nzPageSizeChange)="refreshData(true)" [nzTotal]="_total" [nzBordered]="true" [nzSize]="'default'" [nzCustomNoResult]="true"
-        [nzShowFooter]="true" [nzShowTitle]="true" [nzIsPagination]="true" [nzLoading]="_loading" [nzShowSizeChanger]="true"
+        (nzPageSizeChange)="refreshData(true)" [nzTotal]="_total" [nzBordered]="false" [nzSize]="'default'" [nzCustomNoResult]="true"
+        [nzShowFooter]="false" [nzShowTitle]="false" [nzIsPagination]="true" [nzLoading]="_loading" [nzShowSizeChanger]="true"
         [nzShowQuickJumper]="true" [nzShowTotal]="true">
         <div noResult>无数据时内容</div>
         <thead nz-thead>
@@ -35,8 +42,10 @@
                 <td nz-td>
                     {{i.name}}
                 </td>
-                <td nz-td>{{i.price}}</td>
-                <td nz-td>{{i.typeProductName}}</td>
+                <td nz-td>{{i.price | _currency }}</td>
+                <td nz-td>
+                    <nz-tag [nzColor]="'green'">{{i.typeProductName}}</nz-tag>
+                </td>
                 <td nz-td>{{i.description}}</td>
                 <td nz-td>
                     <span>

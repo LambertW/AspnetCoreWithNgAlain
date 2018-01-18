@@ -42,6 +42,8 @@ export class ListComponent implements OnInit {
 
     _checkAll() {}
 
+    _add() {}
+
     _refreshStatus() {}
 
     edit(item) {
