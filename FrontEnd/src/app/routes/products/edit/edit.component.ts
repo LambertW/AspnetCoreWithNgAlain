@@ -28,7 +28,7 @@ export class EditComponent implements OnInit {
       price: [null, [Validators.required]],
       description: [null, []],
       //typeProductName: [null, []],
-      typeProductId: [null, []]
+      typeProductId: [null, [Validators.required]]
     });
 
     this.initForm(this.id);
