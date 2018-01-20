@@ -38,13 +38,22 @@ namespace AspNetCore.Api.Controllers
         /// <param name="results"></param>
         /// <param name="sortField"></param>
         /// <param name="sortOrder"></param>
+        /// <param name="productName"></param>
         /// <returns></returns>
         /// <response code="200">Returns products by pagination.</response>
         [HttpGet]
         [ProducesResponseType(typeof(PageBase<List<ProductDTO>>), 200)]
-        public async Task<IActionResult> GetProducts(int page = 1, int results = 10, string sortField = "", string sortOrder = "")
+        public async Task<IActionResult> GetProducts(int page = 1, int results = 10, string sortField = "", string sortOrder = "",
+            string productName = "")
         {
-            var products = from b in _apiContext.Products.Skip((page - 1) * results).Take(10)
+            var productsList = from p in _apiContext.Products.Include(t => t.TypeProduct)
+                               select p;
+            if (!string.IsNullOrWhiteSpace(productName))
+            {
+                productsList = productsList.Where(t => t.Name.Contains(productName));
+            }
+
+            var products = from b in productsList.Skip((page - 1) * results).Take(10).ToList()
                            select new ProductDTO()
                            {
                                Id = b.Id,

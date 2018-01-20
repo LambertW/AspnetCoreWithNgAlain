@@ -5,14 +5,15 @@ import { _HttpClient } from "@delon/theme";
 export class ProductsService {
     constructor(private http: _HttpClient) {}
 
-    getProducts(pageIndex = 1, pageSize = 10, sortField, sortOrder) {
+    getProducts(pageIndex = 1, pageSize = 10, sortField, sortOrder, query) {
         var url = "Products";
 
         return this.http.get(url, {
             page: `${pageIndex}`,
             results: `${pageSize}`,
             sortField: sortField,
-            sortOrder: sortOrder
+            sortOrder: sortOrder,
+            productName: query.name
         });
     }
 

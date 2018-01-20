@@ -16,6 +16,12 @@ export class ListComponent implements OnInit {
     _loading = true;
     _sortValue = null;
 
+    _expandForm = false;
+
+    _query: any ={
+        name: ''
+    };
+
     constructor(
         private productsService: ProductsService,
         private msg: NzMessageService,
@@ -32,7 +38,7 @@ export class ListComponent implements OnInit {
         }
         this._loading = true;
         this.productsService
-            .getProducts(this._pageIndex, this._pageSize, "", "")
+            .getProducts(this._pageIndex, this._pageSize, "", "", this._query)
             .subscribe((data: any) => {
                 this._loading = false;
                 this._total = data.info.total;
