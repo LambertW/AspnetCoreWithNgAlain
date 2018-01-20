@@ -48,9 +48,11 @@ namespace AspNetCore.Api.Controllers
         {
             var productsList = from p in _apiContext.Products.Include(t => t.TypeProduct)
                                select p;
+            var total = await _apiContext.Products.CountAsync();
             if (!string.IsNullOrWhiteSpace(productName))
             {
                 productsList = productsList.Where(t => t.Name.Contains(productName));
+                total = await _apiContext.Products.CountAsync(t => t.Name.Contains(productName));
             }
 
             var products = from b in productsList.Skip((page - 1) * results).Take(10).ToList()
@@ -74,7 +76,7 @@ namespace AspNetCore.Api.Controllers
                 Results = 6,
                 Seed = "fdsfsfdsfds",
                 Version = "1.1",
-                Total = _apiContext.Products.Count()
+                Total = total
             };
 
             return Ok(page1);
