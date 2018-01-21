@@ -18,7 +18,7 @@ export class ListComponent implements OnInit {
 
     _expandForm = false;
 
-    _query: any ={
+    _query: any = {
         name: ''
     };
 
@@ -33,6 +33,7 @@ export class ListComponent implements OnInit {
     }
 
     _refreshData(reset = false) {
+        console.log(this._query);
         if (reset) {
             this._pageIndex = 1;
         }

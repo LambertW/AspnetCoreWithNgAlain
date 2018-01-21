@@ -13,7 +13,7 @@ export class ProductsService {
             results: `${pageSize}`,
             sortField: sortField,
             sortOrder: sortOrder,
-            productName: query.name
+            productName: query.name || ''
         });
     }
 

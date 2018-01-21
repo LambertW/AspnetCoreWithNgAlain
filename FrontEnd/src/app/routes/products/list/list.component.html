@@ -6,17 +6,17 @@
             <div nz-col [nzSpan]="8">
                 <div nz-form-item nz-row>
                     <div nz-form-label>
-                        <label for="id">产品名称</label>
+                        <label for="name">产品名称</label>
                     </div>
                     <div nz-form-control>
-                        <nz-input [(ngModel)]="_query.name" name="_query.name" [nzPlaceHolder]="'请输入'" [nzSize]="'large'"></nz-input>
+                        <nz-input [(ngModel)]="_query.name" name="name" [nzPlaceHolder]="'请输入'" nzId="name" [nzSize]="'large'"></nz-input>
                     </div>
                 </div>
             </div>
 
             <div nz-col [nzSpan]="_expandForm ? 24 : 8" [class.text-right]="_expandForm">
-                <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'">查询</button>
-                <button nz-button (click)="_refreshData(true)" [nzSize]="'large'">重置</button>
+                <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" [nzLoading]="_loading">查询</button>
+                <button nz-button type="reset" (click)="_refreshData(true)" [nzSize]="'large'">重置</button>
                 
             </div>
         </div>
