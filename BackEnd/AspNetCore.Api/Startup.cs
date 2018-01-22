@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
+using Newtonsoft.Json;
 
 namespace AspNetCore.Api
 {
@@ -57,11 +58,12 @@ namespace AspNetCore.Api
                 opt.UseInMemoryDatabase("InMemoryDatabase");
             });
 
-            services.AddMvc();
-                //.AddJsonOptions(options =>
-                //{
-                //    options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
-                //});
+            services.AddMvc()
+                .AddJsonOptions(options =>
+                {
+                    //options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+                    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                });
 
             // Register the Swagger generator, defining one or more Swagger documents.
             services.AddSwaggerGen(c =>

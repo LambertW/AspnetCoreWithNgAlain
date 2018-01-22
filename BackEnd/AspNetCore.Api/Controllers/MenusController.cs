@@ -21,11 +21,12 @@ namespace AspNetCore.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [ProducesResponseType(typeof(Menu), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<Menu>), (int)HttpStatusCode.OK)]
         public IActionResult GetMenus()
         {
-            var menu = new Menu
+            var menuList = new List<Menu>()
             {
+                new Menu(){
                 Text = "主导航",
                 Group = true,
                 Children = new List<Menu>
@@ -55,9 +56,10 @@ namespace AspNetCore.Api.Controllers
                         Icon = "icon-rocket"
                     }
                 }
+                }
             };
 
-            return Ok(menu);
+            return Ok(menuList);
         }
     }
 }

@@ -28,7 +28,7 @@ export class StartupService {
                 // ACL：设置权限为全量
                 this.aclService.setFull(true);
                 // 初始化菜单
-                this.menuService.add(res.menu);
+                //this.menuService.add(res.menu);
                 // 设置页面标题的后缀
                 this.titleService.suffix = res.app.name;
 
@@ -36,6 +36,17 @@ export class StartupService {
             }, (err: HttpErrorResponse) => {
                 resolve(null);
             });
+
+        this.httpClient.get('Menu').subscribe((res: any) => {
+            // 初始化菜单
+
+            console.log(res);
+            this.menuService.add(res);
+
+            resolve(res);
+        }, (err: HttpErrorResponse) =>{
+            resolve(null);
+        });
     }
 
     private viaMock(resolve: any, reject: any) {
@@ -57,34 +68,45 @@ export class StartupService {
         // ACL：设置权限为全量
         this.aclService.setFull(true);
         // 初始化菜单
-        this.menuService.add([
-            {
-                text: '主导航',
-                group: true,
-                children: [
-                    {
-                        text: '仪表盘',
-                        link: '/dashboard',
-                        icon: 'icon-speedometer'
-                    },
-                    {
-                        text: '快捷菜单',
-                        icon: 'icon-rocket',
-                        shortcut_root: true
-                    },
-                    {
-                        text: '测试',
-                        link: '/apiValues',
-                        icon: 'icon-rocket'
-                    },
-                    {
-                        text: '产品',
-                        link: '/products/list',
-                        icon: 'icon-rocket'
-                    }
-                ]
-            }
-        ]);
+        // this.menuService.add([
+        //     {
+        //         text: '主导航',
+        //         group: true,
+        //         children: [
+        //             {
+        //                 text: '仪表盘',
+        //                 link: '/dashboard',
+        //                 icon: 'icon-speedometer'
+        //             },
+        //             {
+        //                 text: '快捷菜单',
+        //                 icon: 'icon-rocket',
+        //                 shortcut_root: true
+        //             },
+        //             {
+        //                 text: '测试',
+        //                 link: '/apiValues',
+        //                 icon: 'icon-rocket'
+        //             },
+        //             {
+        //                 text: '产品',
+        //                 link: '/products/list',
+        //                 icon: 'icon-rocket'
+        //             }
+        //         ]
+        //     }
+        // ]);
+
+        this.httpClient.get('Menus').subscribe((res: any) => {
+            // 初始化菜单
+
+            console.log(res);
+            this.menuService.add(res);
+
+            resolve(res);
+        }, (err: HttpErrorResponse) =>{
+            resolve(null);
+        });
         // 设置页面标题的后缀
         this.titleService.suffix = app.name;
 
