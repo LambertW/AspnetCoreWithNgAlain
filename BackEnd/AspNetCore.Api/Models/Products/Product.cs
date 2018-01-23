@@ -13,9 +13,20 @@ namespace AspNetCore.Api.Models.Products
         [Required]
         public string Name { get; set; }
 
+        [Required]
+        public string Sku { get; set; }
+
         public string Description { get; set; }
 
+        [Required]
         public decimal Price { get; set; }
+
+        /// <summary>
+        /// live, pending, expired
+        /// </summary>
+        //public int Status { get; set; }
+
+        public bool Enabled { get; set; }
 
         // Foreign Key
         public int TypeProductId { get; set; }

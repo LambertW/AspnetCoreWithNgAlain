@@ -62,7 +62,7 @@ namespace AspNetCore.Api
                 .AddJsonOptions(options =>
                 {
                     //options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
-                    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                    //options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 });
 
             // Register the Swagger generator, defining one or more Swagger documents.
