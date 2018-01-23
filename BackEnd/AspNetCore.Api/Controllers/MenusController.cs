@@ -45,7 +45,7 @@ namespace AspNetCore.Api.Controllers
                     },
                     new Menu
                     {
-                        Text = "测试",
+                        Text = "Api接口测试",
                         Link = "/apiValues",
                         Icon = "icon-rocket"
                     },
@@ -53,7 +53,7 @@ namespace AspNetCore.Api.Controllers
                     {
                         Text = "产品",
                         Link = "/products/list",
-                        Icon = "icon-rocket"
+                        Icon = "icon-handbag"
                     }
                 }
                 }
