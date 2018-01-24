@@ -52,8 +52,23 @@ namespace AspNetCore.Api.Controllers
                     new Menu
                     {
                         Text = "产品",
-                        Link = "/products/list",
-                        Icon = "icon-handbag"
+                        Icon = "icon-handbag",
+                        Children = new List<Menu>
+                        {
+                            new Menu
+                            {
+                                Text = "通用列表",
+                                Link = "/products/list",
+                                Icon = "icon-handbag"
+                            },
+                            new Menu
+                            {
+                                Text = "SimpleTable列表",
+                                Link = "/products/simple-list",
+                                Icon = "icon-handbag"
+                            }
+
+                        }
                     }
                 }
                 }

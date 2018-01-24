@@ -16,6 +16,7 @@ import { Exception403Component } from './exception/403.component';
 import { Exception404Component } from './exception/404.component';
 import { Exception500Component } from './exception/500.component';
 import { ApiValuesComponent } from 'app/routes/api-values/api-values.component';
+import { SimpleListComponent } from 'app/routes/products/simple-list/simple-list.component';
 
 @NgModule({
     imports: [
