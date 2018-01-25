@@ -1,7 +1,7 @@
 <pro-header [title]="'产品列表(Simple Table)'"></pro-header>
 
 <nz-card nzTitle="Demo">
-  
-  <simple-table #st [data]="products" [extraParams]="params" [total]="total" [columns]="columns" [pi]="ps" [ps]="ps"
-    [resReName]="{list: 'results' }"></simple-table>
+
+  <simple-table #st [data]="products" [total]="total" [columns]="columns" [pi]="pi" [ps]="ps" [reqReName]="{ ps: 'results', pi: 'page'}"
+    (change)="change($event)"></simple-table>
 </nz-card>

@@ -9,8 +9,9 @@ import { ProductsService } from 'app/routes/products/services/products.service';
   styles: []
 })
 export class SimpleListComponent implements OnInit {
-  pi: number;
-  ps: number;
+  pi: number = 1;
+  ps: number = 10;
+  total: number;
   products: any[] = [];
   params = {};
   columns: SimpleTableColumn[] = [
@@ -23,8 +24,21 @@ export class SimpleListComponent implements OnInit {
   constructor(private msg: NzMessageService, private productsService: ProductsService) { }
 
   ngOnInit() {
-    this.productsService.getProducts(this.pi, this.ps, '', '', this.query)
-      .subscribe(res => this.products = res.results );
+    this.productsService.getProducts(1, 10, '', '', this.query)
+      .subscribe(res => {
+        //console.log(res);
+        this.products = res.results;
+        this.total = res.info.total;
+      });
   }
 
+  change(ret: any) {
+    console.log(ret);
+    this.productsService.getProducts(ret.pi, ret.ps, '', '', this.query)
+      .subscribe(res => {
+        //console.log(res);
+        this.products = res.results;
+        this.total = res.info.total;
+      });
+  }
 }
