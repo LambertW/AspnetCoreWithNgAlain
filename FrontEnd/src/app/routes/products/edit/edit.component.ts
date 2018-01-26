@@ -40,7 +40,7 @@ export class EditComponent implements OnInit {
     if (id <= 0)
       return;
 
-    this.productsService.getProduct(id).subscribe(res => {
+    this.productsService.getProduct(id).subscribe((res: any) => {
       this.form.setValue({
         id: res.id,
         name: res.name,

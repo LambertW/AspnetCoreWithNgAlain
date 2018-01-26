@@ -9,8 +9,6 @@ import { ProductsService } from 'app/routes/products/services/products.service';
   styles: []
 })
 export class SimpleListComponent implements OnInit {
-  pi: number = 1;
-  ps: number = 10;
   total: number;
   products: any[] = [];
   params = {};
@@ -25,7 +23,7 @@ export class SimpleListComponent implements OnInit {
 
   ngOnInit() {
     this.productsService.getProducts(1, 10, '', '', this.query)
-      .subscribe(res => {
+      .subscribe((res: any) => {
         //console.log(res);
         this.products = res.results;
         this.total = res.info.total;
@@ -35,7 +33,7 @@ export class SimpleListComponent implements OnInit {
   change(ret: any) {
     console.log(ret);
     this.productsService.getProducts(ret.pi, ret.ps, '', '', this.query)
-      .subscribe(res => {
+      .subscribe((res: any) => {
         //console.log(res);
         this.products = res.results;
         this.total = res.info.total;
