@@ -30,13 +30,14 @@ export class HeaderUserComponent implements OnInit {
         this.tokenService.change().subscribe((res: any) => {
             this.settings.setUser(res);
         });
-        // const token = this.tokenService.get() || {
-        //     token: 'nothing',
-        //     name: 'Admin',
-        //     avatar: './assets/img/zorro.svg',
-        //     email: 'cipchk@qq.com'
-        // };
-        // this.tokenService.set(token);
+        // mock
+        const token = this.tokenService.get() || {
+            token: 'nothing',
+            name: 'Admin',
+            avatar: './assets/img/zorro.svg',
+            email: 'cipchk@qq.com'
+        };
+        this.tokenService.set(token);
     }
 
     logout() {

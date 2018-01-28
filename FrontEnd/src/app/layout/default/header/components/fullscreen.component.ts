@@ -5,7 +5,7 @@ import * as screenfull from 'screenfull';
     selector: 'header-fullscreen',
     template: `
     <i class="anticon anticon-{{status ? 'shrink' : 'arrows-alt'}}"></i>
-    {{ status ? 'Exit Fullscreen' : 'Fullscreen' }}
+    {{ status ? '退出全屏' : '全屏' }}
     `
 })
 export class HeaderFullScreenComponent {

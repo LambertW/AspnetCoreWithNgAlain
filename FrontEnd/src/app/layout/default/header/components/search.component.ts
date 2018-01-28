@@ -3,7 +3,7 @@ import { Component, HostBinding, ViewChild, Input, OnInit, ElementRef, AfterView
 @Component({
     selector: 'header-search',
     template: `
-    <nz-input nzPlaceHolder='Search for people, file, photos...' [(ngModel)]="q"
+    <nz-input nzPlaceHolder='搜索：员工、文件、照片等' [(ngModel)]="q"
         (nzFocus)="qFocus()" (nzBlur)="qBlur()">
         <ng-template #prefix>
             <i class="anticon anticon-search"></i>

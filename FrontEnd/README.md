@@ -12,22 +12,27 @@
 
 ## Quick start
 
-Make sure you have Node version >= 6.9.0 and NPM >= 3 or higher.
+There are two ways to install:
+
+### Use the Command Line
+
+Depend on `@delon/cli`, [How install?](http://ng-alain.com/docs/cli)
 
 ```bash
-# clone a blank ng-alain repo, just only basic function
-#   --depth 1 removes all but one .git commit history
-git clone -b blank --depth 1 https://github.com/cipchk/ng-alain.git
-# or full master branch
-git clone --depth 1 https://github.com/cipchk/ng-alain.git
+ng new -c=@delon/cli my-app
+```
+
+### Clone the Git Repository
+
+```bash
+# --depth 1 removes all but one .git commit history
+$ git clone --depth=1 https://github.com/cipchk/ng-alain.git my-project
 
 # change directory
-cd ng-alain
+cd my-project
 
 # install npm package
 npm install
-# in china please use cnpm （https://github.com/cnpm/cnpm）
-# cnpm install
 
 # start the serve
 npm start
@@ -61,6 +66,9 @@ npm run serve:hmr
 | @delon/abc | [![NPM version](https://img.shields.io/npm/v/@delon/abc.svg)](https://www.npmjs.com/package/@delon/abc) | [![NPM version](https://img.shields.io/npm/v/@delon/abc/next.svg)](https://www.npmjs.com/package/@delon/abc) |
 | @delon/acl | [![NPM version](https://img.shields.io/npm/v/@delon/acl.svg)](https://www.npmjs.com/package/@delon/acl) | [![NPM version](https://img.shields.io/npm/v/@delon/acl/next.svg)](https://www.npmjs.com/package/@delon/acl) |
 | @delon/auth | [![NPM version](https://img.shields.io/npm/v/@delon/auth.svg)](https://www.npmjs.com/package/@delon/auth) | [![NPM version](https://img.shields.io/npm/v/@delon/auth/next.svg)](https://www.npmjs.com/package/@delon/auth) |
+| @delon/mock | [![NPM version](https://img.shields.io/npm/v/@delon/mock.svg)](https://www.npmjs.com/package/@delon/mock) | [![NPM version](https://img.shields.io/npm/v/@delon/mock/next.svg)](https://www.npmjs.com/package/@delon/mock) |
+| @delon/cache | [![NPM version](https://img.shields.io/npm/v/@delon/cache.svg)](https://www.npmjs.com/package/@delon/cache) | [![NPM version](https://img.shields.io/npm/v/@delon/cache/next.svg)](https://www.npmjs.com/package/@delon/cache) |
+| @delon/cli | [![NPM version](https://img.shields.io/npm/v/@delon/cli.svg)](https://www.npmjs.com/package/@delon/cli) | [![NPM version](https://img.shields.io/npm/v/@delon/cli/next.svg)](https://www.npmjs.com/package/@delon/cli) |
 
 ## Architecture
 
@@ -79,7 +87,8 @@ npm run serve:hmr
 + Well organized & commented code
 + Simple upgrade
 + Hot Module Replacement
-+ Support [Docker](_documents/docker.md) deploy
++ Support Docker deploy
++ Support [Electron](http://ng-alain.com/docs/cli#electron) packager(just via @delon/cli)
 
 ## App Shots
 

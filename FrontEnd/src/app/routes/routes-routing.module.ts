@@ -1,3 +1,6 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { environment } from '@env/environment';
 // layout
 import { LayoutDefaultComponent } from '../layout/default/default.component';
 import { LayoutFullScreenComponent } from '../layout/fullscreen/fullscreen.component';
@@ -15,7 +18,7 @@ import { Exception404Component } from './exception/404.component';
 import { Exception500Component } from './exception/500.component';
 import { ApiValuesComponent } from 'app/routes/api-values/api-values.component';
 
-export const routes = [
+const routes: Routes = [
     {
         path: '',
         component: LayoutDefaultComponent,
@@ -25,7 +28,7 @@ export const routes = [
             // 业务子模块
             // { path: 'widgets', loadChildren: './widgets/widgets.module#WidgetsModule' }
             { path: 'apiValues', component: ApiValuesComponent },
-            { path: 'products', loadChildren: './products/products.module#ProductsModule'}
+            { path: 'products', loadChildren: './products/products.module#ProductsModule' }
         ]
     },
     // 全屏布局
@@ -52,3 +55,9 @@ export const routes = [
     { path: '500', component: Exception500Component },
     { path: '**', redirectTo: 'dashboard' }
 ];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes, { useHash: environment.useHash })],
+    exports: [RouterModule]
+  })
+export class RouteRoutingModule { }

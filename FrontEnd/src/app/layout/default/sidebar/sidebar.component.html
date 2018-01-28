@@ -10,7 +10,7 @@
         <ul nz-menu>
             <li nz-menu-item (click)="msgSrv.success('profile')">个人资料</li>
             <li nz-menu-item (click)="msgSrv.success('settings')">设置</li>
-            <li nz-menu-item (click)="logout()">登出</li>
+            <li nz-menu-item (click)="msgSrv.success('logout')">登出</li>
         </ul>
     </nz-dropdown>
     <sidebar-nav class="d-block py-lg"></sidebar-nav>

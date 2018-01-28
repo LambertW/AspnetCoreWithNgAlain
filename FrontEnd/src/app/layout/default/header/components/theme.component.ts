@@ -4,7 +4,7 @@ import { SettingsService, ThemesService, ThemeType } from '@delon/theme';
 @Component({
     selector: 'header-theme',
     template: `
-    <strong>Theme Switch</strong>
+    <strong>切换主题</strong>
     <div class="theme-icons">
         <label *ngFor="let item of themes" (click)="changeTheme(item.l)" [style.background]="item.bg">
             <i class="anticon anticon-check" *ngIf="item.l == settings.layout.theme"></i>

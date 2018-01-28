@@ -1,4 +1,5 @@
 import { TestBed, TestModuleMetadata } from '@angular/core/testing';
+
 import { setUpTestBed } from '@testing/common.spec';
 
 import { LayoutDefaultComponent } from './default.component';

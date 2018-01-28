@@ -3,7 +3,10 @@ import { NzModalService, NzMessageService } from 'ng-zorro-antd';
 
 @Component({
     selector: 'header-storage',
-    template: `<i class="anticon anticon-tool"></i> Clear Local Storage`
+    template: `
+    <i class="anticon anticon-tool"></i>
+    清除本地缓存
+    `
 })
 export class HeaderStorageComponent {
 

@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { SharedModule } from '@shared/shared.module';
-import { environment } from '@env/environment';
 
-import { routes } from './routes';
+import { SharedModule } from '@shared/shared.module';
+import { RouteRoutingModule } from './routes-routing.module';
 // dashboard pages
 import { DashboardComponent } from './dashboard/dashboard.component';
 // passport pages
@@ -16,13 +14,9 @@ import { Exception403Component } from './exception/403.component';
 import { Exception404Component } from './exception/404.component';
 import { Exception500Component } from './exception/500.component';
 import { ApiValuesComponent } from 'app/routes/api-values/api-values.component';
-import { SimpleListComponent } from 'app/routes/products/simple-list/simple-list.component';
 
 @NgModule({
-    imports: [
-        SharedModule,
-        RouterModule.forRoot(routes, { useHash: environment.useHash })
-    ],
+    imports: [ SharedModule, RouteRoutingModule ],
     declarations: [
         DashboardComponent,
         // passport pages
@@ -35,9 +29,6 @@ import { SimpleListComponent } from 'app/routes/products/simple-list/simple-list
         Exception404Component,
         Exception500Component,
         ApiValuesComponent
-    ],
-    exports: [
-        RouterModule
     ]
 })
 export class RoutesModule {}

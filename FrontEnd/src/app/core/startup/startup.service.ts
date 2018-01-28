@@ -1,8 +1,11 @@
 import { Router } from '@angular/router';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { zip } from 'rxjs/observable/zip';
+import { catchError } from 'rxjs/operators';
 import { MenuService, SettingsService, TitleService } from '@delon/theme';
 import { ACLService } from '@delon/acl';
+import { ITokenService, DA_SERVICE_TOKEN } from '@delon/auth';
 
 /**
  * 用于应用启动时
@@ -15,50 +18,56 @@ export class StartupService {
         private settingService: SettingsService,
         private aclService: ACLService,
         private titleService: TitleService,
+        @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService,
         private httpClient: HttpClient,
         private injector: Injector) { }
 
     private viaHttp(resolve: any, reject: any) {
-        this.httpClient.get('assets/app-data.json')
-            .subscribe((res: any) => {
-                // 应用信息：包括站点名、描述、年份
-                this.settingService.setApp(res.app);
-                // 用户信息：包括姓名、头像、邮箱地址
-                this.settingService.setUser(res.user);
-                // ACL：设置权限为全量
-                this.aclService.setFull(true);
-                // 初始化菜单
-                //this.menuService.add(res.menu);
-                // 设置页面标题的后缀
-                this.titleService.suffix = res.app.name;
-
-                resolve(res);
-            }, (err: HttpErrorResponse) => {
+        zip(
+            this.httpClient.get('assets/app-data.json')
+        ).pipe(
+            // 接收其他拦截器后产生的异常消息
+            catchError(([appData]) => {
                 resolve(null);
-            });
+                return [appData];
+            })
+        ).subscribe(([appData]) => {
 
-        this.httpClient.get('Menu').subscribe((res: any) => {
+            // application data
+            const res: any = appData;
+            // 应用信息：包括站点名、描述、年份
+            this.settingService.setApp(res.app);
+            // 用户信息：包括姓名、头像、邮箱地址
+            this.settingService.setUser(res.user);
+            // ACL：设置权限为全量
+            this.aclService.setFull(true);
             // 初始化菜单
-
-            console.log(res);
-            this.menuService.add(res);
-
-            resolve(res);
-        }, (err: HttpErrorResponse) =>{
+            this.menuService.add(res.menu);
+            // 设置页面标题的后缀
+            this.titleService.suffix = res.app.name;
+        },
+        () => { },
+        () => {
             resolve(null);
         });
     }
 
     private viaMock(resolve: any, reject: any) {
+        // const tokenData = this.tokenService.get();
+        // if (!tokenData.token) {
+        //     this.injector.get(Router).navigateByUrl('/passport/login');
+        //     resolve({});
+        //     return;
+        // }
         // mock
         const app: any = {
-            name: `ASP.NET Core with Ng-Alain`,
+            name: `ng-alain`,
             description: `Ng-zorro admin panel front-end framework`
         };
         const user: any = {
             name: 'Admin',
             avatar: './assets/img/zorro.svg',
-            email: 'test@qq.com',
+            email: 'cipchk@qq.com',
             token: '123456789'
         };
         // 应用信息：包括站点名、描述、年份
@@ -82,21 +91,10 @@ export class StartupService {
         //                 text: '快捷菜单',
         //                 icon: 'icon-rocket',
         //                 shortcut_root: true
-        //             },
-        //             {
-        //                 text: '测试',
-        //                 link: '/apiValues',
-        //                 icon: 'icon-rocket'
-        //             },
-        //             {
-        //                 text: '产品',
-        //                 link: '/products/list',
-        //                 icon: 'icon-rocket'
         //             }
         //         ]
         //     }
         // ]);
-
         this.httpClient.get('Menus').subscribe((res: any) => {
             // 初始化菜单
 
