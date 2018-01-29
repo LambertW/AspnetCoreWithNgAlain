@@ -13,7 +13,8 @@ export class SimpleListComponent implements OnInit {
   products: any[] = [];
   params = {};
   columns: SimpleTableColumn[] = [
-    { title: '产品名称', index: 'name' }
+    { title: '产品名称', index: 'name' },
+    { title: '价格', index: 'price' }
   ];
   query = {
     name: ''
@@ -22,6 +23,7 @@ export class SimpleListComponent implements OnInit {
   constructor(private msg: NzMessageService, private productsService: ProductsService) { }
 
   ngOnInit() {
+    console.log('初始化');
     this.productsService.getProducts(1, 10, '', '', this.query)
       .subscribe((res: any) => {
         //console.log(res);
@@ -31,7 +33,7 @@ export class SimpleListComponent implements OnInit {
   }
 
   change(ret: any) {
-    console.log(ret);
+    console.log('change事件');
     this.productsService.getProducts(ret.pi, ret.ps, '', '', this.query)
       .subscribe((res: any) => {
         //console.log(res);

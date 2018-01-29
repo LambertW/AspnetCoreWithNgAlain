@@ -3,5 +3,5 @@
 <nz-card nzTitle="Demo">
 
   <simple-table #st [data]="products" [total]="total" [columns]="columns" [ps]="10" [reqReName]="{ ps: 'results', pi: 'page'}"
-    (change)="change($event)"></simple-table>
+    (change)="change($event)" [isPageIndexReset]="true"></simple-table>
 </nz-card>
