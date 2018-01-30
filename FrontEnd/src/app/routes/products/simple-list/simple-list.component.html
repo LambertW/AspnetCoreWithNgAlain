@@ -2,6 +2,9 @@
 
 <nz-card nzTitle="Demo">
 
-  <simple-table #st [data]="products" [total]="total" [columns]="columns" [ps]="10" [reqReName]="{ ps: 'results', pi: 'page'}"
-    (change)="change($event)" [isPageIndexReset]="true"></simple-table>
+  <simple-table #st [data]="url" [columns]="columns" [ps]="10" [reqReName]="{ ps: 'results', pi: 'page'}"
+    (change)="change($event)" [isPageIndexReset]="true" [resReName]="{list: 'results', total: 'info.total' }"></simple-table>
+  <button (click)="st.load()">加载数据</button>
+  <button (click)="st.load(2)">翻页跳转</button>
+  <button (click)="st.reset()">重置</button>
 </nz-card>

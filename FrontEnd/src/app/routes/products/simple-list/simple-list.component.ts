@@ -9,6 +9,7 @@ import { ProductsService } from 'app/routes/products/services/products.service';
   styles: []
 })
 export class SimpleListComponent implements OnInit {
+  url: string = "Products";
   total: number;
   products: any[] = [];
   params = {};
@@ -23,22 +24,15 @@ export class SimpleListComponent implements OnInit {
   constructor(private msg: NzMessageService, private productsService: ProductsService) { }
 
   ngOnInit() {
-    console.log('初始化');
-    this.productsService.getProducts(1, 10, '', '', this.query)
-      .subscribe((res: any) => {
-        //console.log(res);
-        this.products = res.results;
-        this.total = res.info.total;
-      });
+    // this.productsService.getProducts(1, 10, '', '', this.query)
+    //   .subscribe((res: any) => {
+    //     console.log(res);
+    //     this.products = res.results;
+    //     this.total = res.info.total;
+    //   });
   }
 
   change(ret: any) {
-    console.log('change事件');
-    this.productsService.getProducts(ret.pi, ret.ps, '', '', this.query)
-      .subscribe((res: any) => {
-        //console.log(res);
-        this.products = res.results;
-        this.total = res.info.total;
-      });
+    
   }
 }
