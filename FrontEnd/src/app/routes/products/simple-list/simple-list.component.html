@@ -1,7 +1,9 @@
 <pro-header [title]="'产品列表(Simple Table)'"></pro-header>
 
 <nz-card nzTitle="Demo">
-
+  <ng-template #extra>
+    <button nz-button (click)="st.export()" [nzType]="'primary'" [nzSize]="'small'">Export</button>
+  </ng-template>
   <simple-table #st [data]="url" [columns]="columns" [ps]="10" [reqReName]="{ ps: 'results', pi: 'page'}"
     (change)="change($event)" [isPageIndexReset]="true" [resReName]="{list: 'results', total: 'info.total' }"></simple-table>
   <button (click)="st.load()">加载数据</button>
