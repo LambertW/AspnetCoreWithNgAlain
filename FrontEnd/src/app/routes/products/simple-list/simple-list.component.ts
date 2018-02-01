@@ -17,7 +17,13 @@ export class SimpleListComponent implements OnInit {
   params = {};
   columns: SimpleTableColumn[] = [
     { title: '产品名称', index: 'name' },
-    { title: '价格', index: 'price' },
+    { title: '价格', index: 'price', type: "currency" },
+    { title: '类别', index: 'typeProductName', },
+    {
+      title: '描述', index: 'description', format: (cell: any, row: any) => {
+        return `<i class="anticon anticon-search">${cell.description}</i>`;
+      }
+    },
     {
       title: '操作',
       buttons: [
