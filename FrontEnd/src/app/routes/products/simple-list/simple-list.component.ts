@@ -14,7 +14,9 @@ export class SimpleListComponent implements OnInit {
   url: string = "Products";
   total: number;
   products: any[] = [];
-  params = {};
+  params = {
+    name: ''
+  };
   columns: SimpleTableColumn[] = [
     { title: '产品名称', index: 'name' },
     { title: '价格', index: 'price', type: "currency" },
