@@ -23,7 +23,7 @@ export class SimpleListComponent implements OnInit {
     { title: '类别', index: 'typeProductName', },
     {
       title: '描述', index: 'description', format: (cell: any, row: any) => {
-        return `<i class="anticon anticon-search">${cell.description}</i>`;
+        return `<i class="">${cell.description}</i>`;
       }
     },
     {

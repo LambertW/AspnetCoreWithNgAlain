@@ -1,6 +1,6 @@
 <pro-header [title]="'产品列表(Simple Table)'"></pro-header>
 
-<nz-card>
+<nz-card [nzBordered]="false">
     <ng-template #body>
       <form nz-form (ngSubmit)="st.load()" [nzLayout]="'inline'">
         <div nz-row [nzGutter]="24">
